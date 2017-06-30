@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>魅族官网</title>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="css/common.css">
+<link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="css/css.css">
+<link rel="stylesheet" type="text/css" href="css/jquery-ui.structure.css">
+
+
+<style type="text/css">
+*{
+	margin:0;
+	padding:0;
+
+}
+a:hover{
+	text-decoration: none;
+	color:rgb(76,122,246);
+}
+body{
+	width:100%;
+	height:1000px;
+	overflow-x: hidden;
+}
+li{
+	list-style: none;
+}
+#carousel{
+	height:680px;
+	padding-top:-30px;
+}
+.item,.carousel-inner{
+	
+	height:680px;
+}
+.carousel-indicators li{
+	background: rgb(167,172,176);
+	width:14px;
+	height:14px;
+}
+.carousel-indicators .active{
+	border:2px solid rgb(23,136,232);
+	width:14px;
+	height:14px;
+}
+#ful{
+	position: absolute;
+	top:10px;
+}
+#ful li{
+	float:left;
+	margin-left:40px;
+	list-style: none;
+
+}
+#ful a{
+	color:black;
+	font-size:16px;
+}
+#ful a:hover{
+	color:rgb(76,122,246);
+	text-decoration: none;
+}
+#right{
+	width:800px;
+	height:50px;
+	margin-left:500px;
+	margin-top:25px;
+}
+#center{
+	height:260px;
+	width:100%;
+	text-align:center;
+	margin-top:30px;
+	border-bottom:1px solid rgb(229,229,229);
+}
+
+#footer li{
+	float:left;
+	margin-left:37px;
+	margin-top:5px;
+	font-size:16px;
+}
+#footer a{
+	color:rgb(153,153,153);
+}
+#footer a:hover{
+	color:rgb(76,122,246);
+}
+#footer span{
+	color:rgb(153,153,153);
+	font-size:15px;
+	margin-left:80px;
+}
+#footer p{
+	color:rgb(153,153,153);
+	margin-left:180px;
+	margin-top:30px;
+	margin-bottom:20px;
+	font-size:12px;
+}
+.ali{
+	font-size:15px;
+	margin-top:5px;
+	margin-left:40px;
+	padding-left:40px;
+	border-left:1px solid rgb(229,229,229);
+}
+#btn2{
+	width:64px;
+	height:20px;
+	font-size:12px;
+	text-align: center;
+	background: rgb(50,165,231);
+	border:none;
+}
+.client{
+	padding-top:5px;
+}
+</style>
+<script type="text/javascript" src="js/jquery-1.11.1.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
+<script type="text/javascript" src="js/jquery-ui.js"></script>
+</head>
+<body>
+	<div id="carousel" class="carousel slide carousel-fade" data-ride="carousel"  data-interval="2000" style="top:0">
+    <!-- 轮播（Carousel）指标 -->
+	    <ol class="carousel-indicators" style="left:53%">
+	        <li data-target="#carousel" data-slide-to="0" class="active"></li>
+	        <li data-target="#carousel" data-slide-to="1"></li>
+	        <li data-target="#carousel" data-slide-to="2"></li>
+	        <li data-target="#carousel" data-slide-to="3"></li>
+	        <!-- <li data-target="#carousel" data-slide-to="4"></li> -->
+	       
+	    </ol>   
+    <!-- 轮播（Carousel）项目 -->
+	    <div class="carousel-inner" >
+		   
+	        <div class="item active">
+	        	<!-- <div class="1"></div> -->
+	            <img src="img/fly_banner4.jpg" style="max-width:300%" height="680">
+	        </div>
+	        <div class="item">
+	        	<!-- <div class="2"></div> -->
+	            <img src="img/fly_banner1.png" style="max-width:300%" height="680">
+	        </div>
+	        <div class="item">
+	        	<!-- <div class="3"></div> -->
+	            <img src="img/fly_banner3.jpg" style="max-width:300%" height="680">
+	        </div>
+	        <div class="item">
+	    
+	            <img src="img/fly_banner2.jpg" style="max-width:300%" height="680">
+	        </div>
+	       <!--  <div class="item">
+	        
+	            <img src="img/home_banner5.jpg" style="max-width:300%" height="680">
+	        </div> -->
+		    </div>	    
+		</div>
+	</div>
+	<ul id="ful">
+		<li><img src="img/fly_logo.png"></li>
+		<div id="right">
+			<li><a href="#">Flyme 6</a></li>
+			<li><a href="#">下载</a></li>
+			<li><a href="#">云服务</a></li>
+			<li><a href="#">魅族便签</a></li>
+			<li><a href="#">开放平台</a></li>
+			<li><a href="#">社区</a></li>
+			<li><a href="#">魅族互娱</a></li>
+			<li><a href="index.html">魅族商城</a></li>
+		</div>
+	</ul>
+	<div id ="center">
+		<img src="img/img1.jpg">
+		<img src="img/img2.jpg">
+		<img src="img/img3.jpg">
+		<img src="img/img4.jpg">
+	</div>
+	<div id="footer">
+		<ul>
+			<li><a href="#">博客</a></li>
+			<li><a href="#">查找手机</a></li>
+			<li><a href="#">应用商店</a></li>
+			<li><a href="#">开放平台</a></li>
+		</ul>
+		<div class="client">
+			<a class="ali" href="#">简体中文</a>
+			<span>客服热线  400-788-3333</span>
+			<button type="button" class="btn btn-primary" id="btn2">在线客服</button>
+		</div>
+		
+		<p>©2017Meizu Telecom Equipment Co., Ltd. All rights reserved.    备案号：粤ICP备13003602号-4    经营许可证编号：粤B2-20130198    营业执照    用户协议    粤公网安备 44049102496076号</p>
+	</div>
+</body>
+</html>

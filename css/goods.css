@@ -1,0 +1,307 @@
+
+body{
+	width:100%;
+}
+span{
+	font-size:12px;
+	color:rgb(102,102,102);
+}
+#ful{
+	/*border-bottom:1px solid gray;*/
+}
+#goods{
+	border-top:1px solid rgb(239,239,239);
+	width:100%;
+	height:700px;
+	margin-top:95px;
+}
+#path{
+	padding:10px;
+
+}
+#index_box{
+	border-bottom:1px solid rgb(239,239,239);
+	height:700px;
+	
+}
+#index_img{
+	width:495px;
+	height:565px;
+
+	float:left;
+	margin-left:2%;
+}
+.struc{
+	width:395px;
+	height:395px;
+	margin:40px;
+}
+.struc img{
+	width:375px;
+	height:375px;
+}
+#index_right{
+	width:675px;
+	height:594px;
+	
+	float:left;
+}
+#index_right a{
+	color:rgb(102,102,102);
+}
+#txt{
+	font-size:16px;
+	color:rgb(224,43,65);
+	position: relative;
+	left:-320px;
+}
+.ogray{
+	width:675px;
+	height:56px;
+	background: rgb(245,245,245);
+}
+.ogray span{
+	margin-top:5px;
+	display: inline-block;
+	padding-left:5px;
+}
+#oscore1{
+	font-family:Arial;
+	font-size:22px;
+	color:rgb(224,43,65);
+}
+.ogray1{
+	border-bottom:1px solid rgb(239,239,239);
+}
+.ogray2 span:nth-child(2){
+	margin-right:20px;
+	background: rgb(241,150,59);
+	color:white;
+}
+.ogray2{
+	padding-top:8px;
+}
+#oscore{
+	font-family:Arial;
+	font-size:22px;
+	color:rgb(224,43,65);
+}
+#type{
+	float:left;
+	padding-top:40px;
+}
+#type div{
+	float:right;
+	width:90px;
+	height:25px;
+	border-radius:3px;
+	border:1px solid rgb(0,195,245);
+	text-align: center;
+	margin-left:10px;
+}
+#color{
+	
+	padding-top:40px;
+	height:50px;
+}
+#color span:first-child{
+	height:30px;
+	width:70px;
+	display: block;
+	padding-top:50px;
+	
+}
+#color img{
+	width:32px;
+	height:32px;
+}
+#color div{
+	margin-top:-20px;
+	display: inline-block;
+	width:90px;
+	height:35px;
+	border-radius:3px;
+	
+	margin-left:10px;
+	position: relative;
+	left:60px;
+	cursor: pointer;
+}
+.active{
+	border:1px solid rgb(0,195,245);
+}
+#color div:first-child{
+	padding-left:30px;
+}
+#rom{
+	margin-top:90px;
+	padding-bottom:25px;
+	border-bottom:1px solid rgb(239,239,239);
+}
+#rom div{
+	width:68px;
+	height:25px;
+	border-radius:3px;
+	border:1px solid rgb(0,195,245);
+	position: relative;
+	left:70px;
+	top:-23px;
+	text-align: center;
+}
+#mid{
+	
+	border-bottom:1px solid rgb(239,239,239);
+	padding-bottom:105px;
+}
+.mid{
+	position: relative;
+	top:470px;
+	left:-20px;
+	margin-top:10px;
+}
+.mid1{
+	margin-top:-30px;
+}
+.mid2{
+
+
+}
+.mid span{
+	margin-left:20px;
+	font-size:12px;
+	color:rgb(102,102,102);
+	text-align: center;
+
+}
+#index_right h3{
+	margin-top:-20px;
+	margin-left:0;
+	position: relative;
+	left:-320px;
+}
+#count{
+	position: relative;
+	top:507px;
+
+}
+#spi{
+	position: absolute;
+	top:700px;
+	left:590px;
+	
+}
+#spi input{
+	width:20px;
+}
+#btnbox{
+	position: relative;
+	top:600px;
+}
+.btn{
+	height:40px;
+	width:130px;
+	margin-left:30px;
+}
+.struc img{
+	position: absolute;
+}
+#blank img:first-child{
+	z-index: 50;
+}
+#index_bottom{
+	width:495px;
+	height:91px;
+
+	float:left;
+	
+}
+#index_bottom img{
+	width:75px;
+	height:75px;
+	margin:20px;
+	margin-top:10px;
+	cursor: pointer;
+}
+#btn3{
+	background: rgb(246,101,103);
+	border:none;
+}
+#btn4{
+	background:rgb(10,174,227);
+	border:none;
+}
+.info{
+	margin-top:80px;
+	text-align:center;
+	
+}
+.info div{
+	display: none;
+}
+#b_box{
+	position:absolute;
+	width:395px;
+	height:395px;
+	left:600px;
+	top:150px;
+	overflow: hidden;
+	z-index: 10;
+	display: none;
+}
+#b_box_all{
+	width:680px;
+	height:680px;
+	position: absolute;
+	display: none;
+}
+#b_box_all img{
+	display: none;
+	z-index: 100;
+}
+#s_box{
+	position: relative;
+}
+.position_box{
+	width: 100px;
+	height: 75px;
+	background: #b6b6b6;
+	opacity: 0.6;
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 60;
+	display: none;
+}
+#index_right ul{
+	position: absolute;
+	left:20px;
+	top:846px;	
+	line-height:29px;
+
+}
+#index_right ul li{
+	float:left;
+	font-size:16px;
+	margin-right:40px;
+	cursor:pointer;
+}
+#index_right .act{
+	color:#00c3f5;
+	border-bottom:1px solid #00c3f5;
+	
+}
+.standard{
+	background: url(../img/222.png) no-repeat center top;
+	width:100%;
+	height:3400px;
+	
+}
+.problem{
+	background: url(../img/333.png) no-repeat center top;
+	width:100%;
+	height:1876px;
+	
+}
+.info .act1{
+	display:block;
+}

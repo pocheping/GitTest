@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>手机-魅族商城</title>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="css/common.css">
+<link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="css/css.css">
+<link rel="stylesheet" type="text/css" href="css/jquery-ui.structure.css">
+<link rel="stylesheet" type="text/css" href="css/tool.css">
+<style>
+#entirety{
+	width:100%;
+	height:650px;
+	background: rgb(248,248,248);
+}
+#selector{
+	/*margin-top:50px;*/
+	height:124px;
+	width:100%;
+	background: white;
+}
+#all{
+	margin-top:80px;
+	height:50px;
+	border-top:1px solid rgb(239,239,239);
+	padding-top:20px;
+	margin-left:20px;
+}
+#all span{
+	width:500px;
+
+}
+.ul1 li{
+	float:left;
+}
+.ul1 li:nth-child(2){
+	margin-left:28px;
+}
+.ul2 li{
+	float:left;
+}
+#selector ul{
+	margin-left:20px;
+	margin-top:30px;
+}
+#selector li{
+	margin-right:30px;
+}
+#selector a{
+	color:black;
+}
+.new li{
+	float:left;
+	font-size:16px;
+	margin:20px;
+}
+.ckbox{
+	float:right;
+	margin:20px;
+}
+#money{
+	width:1252px;
+	overflow: hidden;
+	text-align: center;
+}
+#money .bx{
+	width:301px;
+	height:393px;
+	margin: 0 10px ;
+	background: white;
+	float: left;
+	text-align: center;
+	cursor: pointer;
+}
+.smbx{
+	width:393px;
+
+	position: relative;
+	top:265px;
+}
+.large{
+	height:220px;
+	width:220px;
+	display: none;
+	margin:20px auto;
+}
+.litle{
+	height: 40px;
+	width:40px;
+	float:left;
+	margin-left:45px;
+	border:1px solid rgb(239,239,239);
+	position: relative;
+	top:0;
+	left:0;
+}
+#money p{
+	position: relative;
+	top:30px;
+	left:0px;
+}
+#money span{
+	position: relative;
+	top:20px;
+	left:0px;
+	color:#E02B41;
+	font-size:12px;
+}
+#money h6{
+	position: relative;
+	top:15px;
+	left:0px;
+	color:#E02B41;
+	font-size:16px;
+}
+</style>
+<script type="text/javascript" src="js/jquery-1.11.1.js"></script>
+<script type="text/javascript" src="js/jquery.cookie.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
+<script type="text/javascript" src="js/jquery-ui.js"></script>
+<script>
+	$(function(){
+		//顶部购物车数量
+	 	var cookieStr = $.cookie("goods");
+		var arr = eval(cookieStr);
+		var sum = 0;
+		console.log(arr)
+		for(var j in arr){
+			sum +=arr[j].num;
+			$(".col-lg-4 span").html(sum);
+		}
+
+		//导航栏下拉效果
+		$("#ful").find("li").hover(function(){
+
+			var index = $(this).index();
+			$.ajax({
+				url:"js/data.json",
+				type:"POST",
+				success:function(data){
+					
+					$(".phone1").html("");
+					var arr = data["list" + index];
+					for(var i = 0; i < arr.length; i++){
+						$('<li class="list2"><img src="'+arr[i].img+'"><p>'+arr[i].txt+'</p><span>'+arr[i].oldscore+'</span><span>'+arr[i].newscore+'</span></li>').appendTo(".phone1");
+					
+					$("#drop").stop().show("blind", 500);
+					$("#drop").find(".list2").animate({left:0},200 * i /2 + 150).animate({opacity:1},400);
+
+					}
+				}
+			})
+			
+		})
+		
+		// $("#select").on("mouseleave","li",function(){
+
+		// })
+		$("#select").mouseleave(function(){
+			
+			$("#drop").hide("blind",200);
+			//clearTimeout(t);
+		})
+		$("#ful").on("mouseover","a",function(){
+			$(this).css("color","rgb(0,195,245)").css("text-decoration","none");
+
+		})
+		$("#ful").on("mouseout","a",function(){
+			$(this).css("color","black");
+		})
+		$("#selector").on("mouseover","a",function(){
+			$(this).css("color","rgb(0,195,245)").css("text-decoration","none");
+
+		})
+		$("#selector").on("mouseout","a",function(){
+			$(this).css("color","black");
+		})
+		$.ajax({
+            url:"js/data7.json",
+            type:"POST",
+            success:function(data){
+
+            	// var index = $(this).index();
+            	var index = $(".bx").index();
+                var arr = data["list"+index];
+                for(var i = 0; i < arr.length; i++){
+                	console.log(arr.length);
+                	if(arr[i].img !=""){
+                		$('<img class="large" src='+arr[i].img+' />').appendTo($("#money .bx"));
+                		$('<img class="litle" src ='+arr[i].img1+'>').appendTo($(".smbx"));
+                	}
+                	$('<p>'+arr[i].title+'</p><span>'+arr[i].info+'</span><h6>'+arr[i].price+'</h6>').appendTo($("#money .bx"));
+	                $(".bx").find(".large").eq(2).css("display","block");
+                }				
+            }			
+        })
+		$("#money").on("click",".litle",function(){
+			$(".litle").css("border-color","rgb(239,239,239)");
+			$(this).css("border-color","rgb(189,189,189)")
+			$(this).closest(".bx").find(".large").css("display","none");
+			// alert($(this))
+			$(this).closest(".bx").find(".large").eq($(this).index()).css("display","block");
+		})
+
+
+
+		$.ajax({
+            url:"js/data6.json",
+            type:"POST",
+            success:function(data){
+            	console.log(data);
+            	var arr =data["list1"];
+              //  var arr = data["list"+index];
+                for(var i = 0; i < arr.length; i++){
+                	// console.log(arr.length);
+                    $('<div><img src="'+arr[i].img+'"><p>'+arr[i].title+'</p><span>'+arr[i].info+'</span><h6>'+arr[i].price+'</h6></div>').appendTo(".imgbox");
+
+                }
+            }
+        })
+        timer = setInterval(function(){
+			if($(".imgbox div").css("left") =="0px"){
+				$(".imgbox div").stop().animate({left:-1260},1000);
+			}else if($(".imgbox div").css("left") =="-1260px"){
+				$(".imgbox div").stop().animate({left:0},1000);	
+			}
+		},3000);
+		$(".leftbtn").click(function(){
+			$(".imgbox div").animate({left:-1260},1000);
+		});
+		$(".rightbtn").click(function(){
+			$(".imgbox div").animate({left:0},1000);
+		})
+        $(".bx").on("click",".large",function(){
+        	location.href = "goods.html";
+        })
+	})
+</script>
+</head>
+<body>
+	<div id = "nav" class="container">
+		<div class="row">
+			<div class = "col-lg-6">
+				<a href="#">魅族官网</a>
+				<a href="index.html">魅族商城</a>
+				<a href="home.html">Flyme</a>
+				<a href="#">专卖店</a>
+				<a href="#">服务</a>
+				<a href="#">社区</a>
+			</div>
+			<div class = "col-lg-4 col-lg-push-2">
+				<a href="car.html">购物车<span>0</span></a>
+				<a href="#">我的订单</a>
+				<a href="register.html">登录</a>
+				<a href="login.html">注册</a>
+			</div>
+		</div>
+	</div>
+	<div id="select">
+		<img src="img/logo.jpg"/>
+		<ul id ="ful">
+			<li class="phone s0"><a href="list.html">全部分类</a></li>
+			<li class="phone s1"><a href="list.html">PRO手机</a></li>
+			<li class="phone s2"><a href="list.html">魅蓝手机</a></li>
+			<li class="phone s3"><a href="list.html">MX手机</a></li>
+			<li class="phone s4"><a href="list.html">数码配件</a></li>
+			<li class="phone s5"><a href="list.html">智能设备</a></li>
+		</ul>
+		<div id="drop">
+			<ul class="phone1"></ul>
+		</div>
+	</div>
+	<div id="all"><span>首页 > 全部商品 > 手机</span></div>
+	<div id="entirety">
+		<div id = "selector">
+			<ul class="ul1">
+				<li>系列:</li>
+				<li><a href="#">全部</a></li>
+				<li><a href="#">魅族系列</a></li>
+				<li><a href="#">魅蓝系列</a></li>
+			</ul>
+			<br/>
+			<ul class="ul2">
+				<li>屏幕尺寸:</li>
+				<li><a href="#">全部</a></li>
+				<li><a href="#">5.0英寸</a></li>
+				<li><a href="#">5.2英寸</a></li>
+				<li><a href="#">5.5英寸</a></li>
+				<li><a href="#">5.7英寸</a></li>
+				<li><a href="#">6.0英寸</a></li>			
+			</ul>
+
+		</div>
+		<ul class="new">
+			<li>推荐</li>
+			<li>新品</li>
+			<li>价格</li>
+		</ul>
+		<div class="ckbox">
+			<input type="checkbox">
+			<span>仅显示有货商品</span>
+		</div>
+		<div id="money">
+			<div class="bx">
+				<div class="smbx">
+					
+				</div>
+			</div>
+			<div class="bx">
+				<div class="smbx"></div>
+			</div>	
+			<div class="bx">
+				<div class="smbx"></div>
+			</div>
+		</div>
+	</div>
+	
+
+
+
+	<div id ="two" style="margin-top:30px">
+		<h2>为您推荐</h2>
+		<div id="box">
+			<button class="leftbtn"><</button>
+			<button class="rightbtn">></button>
+		</div>
+		<div class="imgbox"></div>
+	</div>
+	<div id="foot" >
+		<div class="div1">
+			<ul>
+				<li><span>7天无理由退货</span></li>
+				<li><span>7天无理由退货</span></li>
+				<li><span>7天无理由退货</span></li>
+				<li><span>7天无理由退货</span></li>
+				<li><span>7天无理由退货</span></li>
+				<li><span>7天无理由退货</span></li>
+			</ul>
+		</div>
+		<div class="libox">
+			<ul>
+				<li>帮助说明</li>
+				<li>支付方式</li>
+				<li>配送说明</li>
+				<li>售后服务</li>
+				<li>付款帮助</li>
+			</ul>
+			<ul>
+				<li>帮助说明</li>
+				<li>支付方式</li>
+				<li>配送说明</li>
+				<li>售后服务</li>
+				<li>付款帮助</li>
+			</ul>
+			<ul>
+				<li>帮助说明</li>
+				<li>支付方式</li>
+				<li>配送说明</li>
+				<li>售后服务</li>
+				<li>付款帮助</li>
+			</ul>
+			<ul>
+				<li>帮助说明</li>
+				<li>支付方式</li>
+				<li>配送说明</li>
+				<li>售后服务</li>
+				<li>付款帮助</li>
+			</ul>
+			<ul>
+				<li>24小时全国服务热线</li>
+				<li><h3>400-788-3333</h3></li>
+				<li><button type="button" class="btn btn-primary">24小时在线客服</button></li>
+			</ul>
+		</div>
+		<div class="lp">
+			<p>珠海市魅族通讯设备有限公司 ©2017 Meizu Telecom Equipment Co., Ltd. All rights reserved. 备案号：粤ICP备13003602号-2 经营许可证编号：粤B2-20130198 营业执照</p>
+		</div>
+	</div>
+</body>
+</html>

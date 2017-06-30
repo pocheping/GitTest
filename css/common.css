@@ -1,0 +1,91 @@
+#nav{
+	background: #fafafc;
+	height:40px;
+	width:100%;
+}
+#nav a{
+	color:#666666;
+	padding: 18px;
+	font-size: 12px;
+	text-decoration: none;
+}
+#nav a:hover{
+	color:blue;
+}
+.row{
+	margin-top:12px;
+}
+.div1 ul li{
+	float:left;
+	width:210px;
+	height:80px;
+	text-align: center;
+	background: url(../img/foot_bg.jpg) no-repeat top center;
+	margin-top:50px;
+	padding:0;
+	border-right:1px solid rgb(229,229,229);
+} 
+.div1 ul li:last-child{
+	border:none;
+}
+#foot{
+	margin-top:50px;
+	height:500px;
+	background: rgb(250,250,252);
+}
+.div1 ul li span{
+	position: relative;
+	top:50px;
+}
+.div1{
+	height:200px;
+	border-bottom:1px solid rgb(229,229,229);
+}
+.libox{
+	height:220px;
+	border-bottom:1px solid rgb(229,229,229);
+}
+.libox ul{
+	float:left;
+	margin-left:200px;
+	margin-top:40px;
+}
+.libox ul:first-child{
+	margin-left:150px;
+}
+.libox ul:last-child{
+	
+	margin-left:80px;
+}
+
+.libox ul li{
+	font-size:12px;
+	margin-top:10px;
+	color:rgb(102,102,102);
+}
+.libox ul li:first-child{
+	font-size:14px;
+	color:rgb(51,51,51);
+	margin-left:-3px;
+}
+.libox ul:last-child li:first-child{
+	color:rgb(102,102,102);
+	margin-left:3px;
+}
+.libox h3{
+	color:rgb(31,167,234);
+}
+.libox button{
+	margin-top:50px;
+	height:40px;
+	width:150px;
+	background:rgb(31,167,234);
+	border:none;
+}
+.lp{
+	color:rgb(102,102,102);
+	margin-top:20px;
+	text-align: center;
+	height:20px;
+	font-size:10px;
+}

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="css/jquery-ui.structure.css">
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="css/login.css">
+<style type="text/css">
+#login{
+	text-align: center;
+}
+.one{
+	margin-top:70px;
+	font-size:20px;
+}
+.one a{
+	margin-left:10px;
+	padding-right:30px;
+}
+.two input,.three input{
+	width:300px;
+	height:48px;
+	border:1px solid rgb(218,218,218);
+	/*color:rgb(218,218,218);*/
+}
+.two{
+	margin-top:70px;
+}
+.three{
+	margin-top:20px;
+	margin-bottom:20px;
+}
+.four button{
+	width:300px;
+	height:40px;
+	border:1px solid rgb(218,218,218);
+	background: rgb(247,247,247);
+	color:rgb(136,136,136);
+}
+.five{
+	text-align:left;
+	margin-left:40px;
+	margin-top:10px;
+}
+.five input{
+	width:18px;
+	height:18px;
+}
+.five a{
+	color:rgb(127,127,127);
+	position: relative;
+	top:-3px;
+}
+#btn1{
+	width:300px;
+	height:47px;
+	background: rgb(50,165,231);
+	border:none;
+}
+.six{
+	margin-top:15px;
+}
+.lo1{
+	position: relative;
+	left:-100px;
+	top:10px;
+}
+.lo2{
+	position: relative;
+	left:100px;
+	top:10px;
+}
+#foot{
+	margin-top:30px;
+}
+#account{
+	display: block;
+}
+#account2{
+	display: none;
+}
+.buin button{
+	width:70px;
+	height:47px;
+	background: white;
+	border:1px solid rgb(218,218,218);
+	border-right:none;
+	position: absolute;
+	top:200px;
+	left:40px;
+}
+.verify button{
+	width:100px;
+	height:47px;
+	background: white;
+	border:1px solid rgb(218,218,218);
+	border-left:none;
+	position: absolute;
+	top:270px;
+	left:237px;
+}
+.buin input{
+	width:227px;
+	height:47px;
+	position: absolute;
+	top:200px;
+	left:110px;
+	border:1px solid rgb(218,218,218);
+}
+.verify input{
+	width:197px;
+	height:47px;
+	position: absolute;
+	top:270px;
+	left:40px;
+	border:1px solid rgb(218,218,218);
+}
+.check{
+	display: block;
+	position: absolute;
+	left:30%;
+	top:216px;
+	color:red;
+}
+.check1{
+	display: block;
+	position: absolute;
+	left:30%;
+	top:284px;
+	color:red;
+}
+</style>
+<script type="text/javascript" src="js/jquery-1.11.1.js"></script>
+<script type="text/javascript" src="js/jquery.cookie.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
+<script type="text/javascript" src="js/jquery-ui.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$("#click2").click(function(){
+			$("#account").css("display","none");
+			$("#account2").css("display","block");
+			$(".six").css("marginTop","270px");
+		})
+		$("#click1").click(function(){
+			$("#account2").css("display","none");
+			$("#account").css("display","block");
+			$(".six").css("marginTop","15px");
+		})
+
+
+
+		 //手机号栏失去焦点
+	    $(".iphoneD").blur(function(){
+	        reg=/^1[3|5|7|8][0-9]\d{4,8}$/i;//验证手机正则(输入前7位至11位)
+	        if( $(".iphoneD").val()==""){ 	           
+	            $(".check").html("请输入手机号");
+	        }
+	        else if($(".iphoneD").val().length<11){     
+	            $(".check").html("手机号长度有误！");      
+	        }
+	        else if(!reg.test($(".iphoneD").val())) {   	          
+	            $(".check").html("逗我呢吧，你确定这是你的手机号!!");
+	            
+	        }else{
+	        	$(".check").html("√");
+	        	
+	        }        
+	    });
+	    //密码栏失去焦点
+	    $(".passwordD").blur(function(){
+	        reg1=/^.*[\d]+.*$/;
+	        reg2=/^.*[A-Za-z]+.*$/;
+	        reg3=/^.*[_@#%&^+-/*\/\\]+.*$/;//验证密码
+	       
+	        if( $(".passwordD").val() ==""){	        
+	            $(".check1").html("请填写密码");	     
+	        }
+	        else if($(".passwordD").val().length>16 || $(".passwordD").val().length<8){   	       
+	            $(".check1").html("密码应为8-16个字符，区分大小写");          
+	        }
+	        else if(!((reg1.test($(".passwordD").val()) && reg2.test($(".passwordD").val())) || (reg1.test($(".passwordD").val()) && reg3.test($(".passwordD").val())) || (reg2.test($(".passwordD").val()) && reg3.test($(".passwordD").val())) )){	          
+	            $(".check1").html("需至少包含两种类型");	           
+	        }
+	        else{
+	            $(".check1").html("√");
+	        }
+	    });
+
+	    $("#btn1").click(function(){
+	    	if($(".iphoneD").val() == $.cookie("username") && $(".passwordD").val() == $.cookie("password")){
+	    		alert("登陆成功");
+	    		// if($("[name='checkbox']").attr("checked","true")){
+	    		// 	if(window.location.reload()){
+	    		// 		$(".iphoneD").val() == $.cookie("username");
+	    		// 		$(".passwordD").val() == $.cookie("password");
+	    		// 	}
+	    		// }
+	    		location.href = "index.html";
+	    	}else if($(".iphoneD").val() !== $.cookie("username")){
+	    		alert("用户名不存在，请先去注册！");
+	    	}
+	    	else{
+	    		alert("用户名与密码不一致");
+	    	}
+	    	
+	    })
+	    $(".five input").click(function(){
+	    	singleton();
+	    })
+	    var singleton =(function(){
+	    	var oUser = null;
+	    	var User = function(){
+	    		var oUser = document.querySelector(".iphoneD");
+	    		if(!$("oUser").val()){
+	    			$(".iphoneD").val() == $.cookie("username")
+					
+	    		}
+	    	}
+	    	return User;
+	    })();
+
+
+
+	})
+</script>
+<title>登录</title>
+</head>
+<body>
+	<div id="head"><a href="index.html"><img src="img/logo1.png" ></a></div>
+	<div id="main">
+		<div id ="login">
+			<div class="one">
+				<a id="click1" href="#">账号登陆</a>︳
+				<a id="click2" href="#">验证码登录</a>
+			</div>
+
+			<div id="account">
+				<div class="two">
+					<input class="iphoneD" type="text" placeholder="手机号/魅族账号">
+				</div>
+				<span class="check"></span>
+				<span class="check1"></span>
+				<div class="three">
+					<input class="passwordD" type="password" placeholder="密码">
+				</div>
+				<div class="four">
+					<button>点击按钮进行验证</button>
+				</div>
+				<div class="five">
+					<input type ="checkbox">
+					<a href="#">记住登录状态</a>
+				</div>
+			</div>
+
+			<div id="account2">
+				<div class="buin">
+			    	<button>+86ⅴ</button>
+			    	<ul></ul>
+			    	<input type="text" placeholder="手机号码">
+			    </div>
+			    <div class="verify">
+			 	    <input type="text" placeholder="验证码">
+			    	<button>获取验证码</button>	
+			    </div>
+			</div>
+
+
+
+
+			<div class="six">
+				<button type="button" class="btn btn-primary" id="btn1">登录</button>
+			</div>
+			<a href="login.html" class="lo1">注册</a>
+			<a href="#" class="lo2">忘记密码?</a>
+		</div>
+	</div>
+	<div id ="foot">
+		<ul>
+			<li>关于魅族</li>
+			<li>工作机会</li>
+			<li>联系我们</li>
+			<li>法律声明</li>
+			<li>简体中文</li>
+		</ul>
+		<span>客服热线 400-788-3333</span>
+		<button type="button" class="btn btn-primary" id="btn2">在线客服</button>
+		<p>©2017 Meizu Telecom Equipment Co., Ltd. All rights reserved.备案号: 粤ICP备13003602号-4经营许可证编号: 粤B2-20130198营业执照</p>
+	</div>
+</body>
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>注册</title>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="css/common.css">
+<link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="css/jquery-ui.structure.css">
+<link rel="stylesheet" type="text/css" href="css/login.css">
+
+<style type="text/css">
+.buin{
+	color:rgb(128,128,128);
+}
+.buin button{
+	width:70px;
+	height:47px;
+	background: white;
+	border:1px solid rgb(218,218,218);
+	border-right:none;
+	position: absolute;
+	top:120px;
+	left:40px;
+}
+
+input{
+	
+	width:297px;
+	height:47px;
+	position: absolute;
+	top:200px;
+	left:40px;
+	border:1px solid rgb(218,218,218);
+}
+.phone{
+	top:120px;
+	left:110px;
+	width:227px;
+}
+.check{
+	display: block;
+	position: absolute;
+	left:30%;
+	top:170px;
+	color:red;
+}
+.check1{
+	display: block;
+	position: absolute;
+	left:30%;
+	top:250px;
+	color:red;
+}
+#slider{
+	margin-top:280px;
+	margin-left:56px;
+}
+.ui-widget{
+	font-size: 1.8em;
+	
+}
+.ui-slider{
+	width:280px;
+
+}
+.ui-slider-handle{
+	left:0;
+}
+.oSpan{
+	font-size:12px;
+	padding: 20px 40px;
+}
+#btn1{
+	width:300px;
+	height:47px;
+	margin-left:36px;
+	background: rgb(50,165,231);
+	border:none;
+}
+.lo{
+	position: absolute;
+	left:40px;
+	bottom:20px;
+	color: rgb(50,165,231);
+}
+</style>
+
+<script type="text/javascript" src="js/jquery-1.11.1.js"></script>
+<script type="text/javascript" src="js/jquery.cookie.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
+<script type="text/javascript" src="js/jquery-ui.js"></script>
+
+<script type="text/javascript">
+	$(function(){
+		 $( "#slider").slider();
+
+		 //手机号栏失去焦点
+	    $(".phone").blur(function(){
+	        reg=/^1[3|5|7|8][0-9]\d{4,8}$/i;//验证手机正则(输入前7位至11位)
+	        if( $(".phone").val()==""){ 	           
+	            $(".check").html("请输入手机号");
+	        }
+	        else if($(".phone").val().length<11){     
+	            $(".check").html("手机号长度有误！");      
+	        }
+	        else if(!reg.test($(".phone").val())) {   	          
+	            $(".check").html("逗我呢吧，你确定这是你的手机号!!");
+	            
+	        }else{
+	        	$(".check").html("√");
+	        	
+	        }        
+	    });
+	    //密码栏失去焦点
+	    $(".password").blur(function(){
+	        reg1=/^.*[\d]+.*$/;
+	        reg2=/^.*[A-Za-z]+.*$/;
+	        reg3=/^.*[_@#%&^+-/*\/\\]+.*$/;//验证密码
+	       
+	        if( $(".password").val() ==""){	        
+	            $(".check1").html("请填写密码");	     
+	        }
+	        else if($(".password").val().length>16 || $(".password").val().length<8){   	       
+	            $(".check1").html("密码应为8-16个字符，区分大小写");          
+	        }
+	        else if(!((reg1.test($(".password").val()) && reg2.test($(".password").val())) || (reg1.test($(".password").val()) && reg3.test($(".password").val())) || (reg2.test($(".password").val()) && reg3.test($(".password").val())) )){	          
+	            $(".check1").html("需至少包含两种类型");	           
+	        }
+	        else{
+	            $(".check1").html("√");
+	        }
+	    });
+
+		$("#btn1").click(function(){
+		    if($(".check").html()== '√' && $(".check1").html()=="√"){		    	
+        		alert("注册成功");
+        		$.cookie("username", $(".phone").val(),{expires:7});
+        		$.cookie("password", $(".password").val(),{expires:7});
+        		location.href = "register.html";
+		    }
+	    })
+	})
+	
+</script>
+</head>
+<body>
+	<div id="head"><a href="index.html"><img src="img/logo1.png" ></a></div>
+	<div id="main">
+		<div id ="login">
+			<a href="#" class="title">注册魅族账号</a>
+			<span class="check"></span>
+			<span class="check1"></span>
+		    <div class="buin">
+		    	<button>+86ⅴ</button>
+		    	<ul></ul>
+		    	<input class="phone" type="text" placeholder="手机号码">
+		    	<input class="password" type="password" placeholder="密码">
+		    </div>
+		    <div id="slider"></div>
+		    <div class="oSpan"><span>点击立即注册，即表示您同意并愿意遵守 <a href="#">Flyme服务协议</a> 和 <a href="#">法律声明</a></span></div>
+		    <button type="button" class="btn btn-primary" id="btn1">立即注册</button>
+		    <a href="register.html" class="lo">登录</a>
+		</div>
+	</div>
+	<div id ="foot">
+		<ul>
+			<li>关于魅族</li>
+			<li>工作机会</li>
+			<li>联系我们</li>
+			<li>法律声明</li>
+			<li>简体中文</li>
+		</ul>
+		<span>客服热线 400-788-3333</span>
+		<button type="button" class="btn btn-primary" id="btn2">在线客服</button>
+		<p>©2017 Meizu Telecom Equipment Co., Ltd. All rights reserved.备案号: 粤ICP备13003602号-4经营许可证编号: 粤B2-20130198营业执照</p>
+	</div>
+</body>
+</html>

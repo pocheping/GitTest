@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>魅族官网商城</title>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="css/common.css">
+<link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="css/css.css">
+<link rel="stylesheet" type="text/css" href="css/jquery-ui.structure.css">
+<link rel="stylesheet" type="text/css" href="css/tool.css">
+
+<script type="text/javascript" src="js/jquery-1.11.1.js"></script>
+<script type="text/javascript" src="js/jquery.cookie.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
+<script type="text/javascript" src="js/jquery-ui.js"></script>
+<script type="text/javascript">
+	$(function(){
+		
+		
+		//顶部购物车数量
+	 	var cookieStr = $.cookie("goods");
+		var arr = eval(cookieStr);
+		var sum = 0;
+		console.log(arr)
+		for(var j in arr){
+			sum +=arr[j].num;
+			$(".col-lg-4 span").html(sum);
+		}
+
+		$("#btn1").click(function(){
+			$(".title").css("display","none");
+		})
+		$(".title").click(function(){
+			location.href="goods.html";
+		})
+		//导航栏下拉效果
+		$("#ful").find("li").hover(function(){
+			var index = $(this).index();
+			$.ajax({
+				url:"js/data.json",
+				type:"POST",
+				success:function(data){
+					
+					$(".phone1").html("");
+					var arr = data["list" + index];
+					for(var i = 0; i < arr.length; i++){
+						$('<li class="list2"><img src="'+arr[i].img+'"><p>'+arr[i].txt+'</p><span>'+arr[i].oldscore+'</span><span>'+arr[i].newscore+'</span></li>').appendTo(".phone1");
+					
+					$("#drop").stop().show("blind", 500);
+					$("#drop").find(".list2").animate({left:0},200 * i /2 + 150).animate({opacity:1},400);
+					}
+				}
+			})
+			
+		})
+		$("#ful").on("mouseover","a",function(){
+			$(this).css("color","rgb(0,195,245)").css("text-decoration","none");
+
+		})
+		$("#ful").on("mouseout","a",function(){
+			$(this).css("color","black");
+		})
+		// $("#select").on("mouseleave","li",function(){
+
+		// })
+		$("#select").mouseleave(function(){
+			
+			$("#drop").hide("blind",200);
+			//clearTimeout(t);
+		})
+
+		//左侧导航栏
+		$("#label").on("mouseenter","a",function(){
+			$(this).css("background","white");
+			var index = $(this).index();
+			$.ajax({
+				url:"js/data1.json",
+				type:"POST",
+				success:function(data){
+					//console.log(index);
+					$(".list").html("");
+					var arr = data["list" + index];
+					//console.log(arr);
+					for(var i = 0; i < arr.length; i++){
+						$('<li class="list1"><p>'+arr[i].title+'</p><img src="'+arr[i].img+'"><span>'+arr[i].txt+'</span></li>').appendTo(".list");
+					}
+				}
+			})
+			$(".unfold").css("display","block");	
+		})
+		$("#label").on("mouseleave","a",function(){
+			$(this).css("background","rgba(202,200,201,0)");
+		})
+		$("#label").on("mouseleave",".unfold",function(){
+			$(".unfold").css("display","none");
+		})
+		
+		timer = setInterval(function(){
+			if($(".imgbox div").css("left") =="0px"){
+				$(".imgbox div").stop().animate({left:-1260},1000);
+			}else if($(".imgbox div").css("left") =="-1260px"){
+				$(".imgbox div").stop().animate({left:0},1000);	
+			}
+		},3000);
+		$(".leftbtn").click(function(){
+			$(".imgbox div").animate({left:-1260},1000);
+		});
+		$(".rightbtn").click(function(){
+			$(".imgbox div").animate({left:0},1000);
+		})
+
+
+		$(".imgbox").on("mouseover","div",function(){
+			$(this).css("border","1px solid #bdbdbd");
+		})
+		$(".imgbox").on("mouseleave","div",function(){
+			$(this).css("border","1px solid rgb(239,239,239)");
+		})
+
+		$(".l").mouseover(function(){
+			$(this).animate({opacity:0.5},200);
+		});
+		$(".l").mouseout(function(){
+			$(this).animate({opacity:1},200);
+		});
+		//创建three部分
+		//var index = $(".threebox").index();
+        $.ajax({
+            url:"js/data3.json",
+            type:"POST",
+            success:function(data){
+            	console.log(data);
+            	var arr =data["list0"];
+              //  var arr = data["list"+index];
+                for(var i = 0; i < arr.length; i++){
+                	console.log(arr.length);
+                    $('<li><img src="'+arr[i].img+'"><p>'+arr[i].txt+'</p><p>'+arr[i].intro+'</p><span>'+arr[i].oldscore+'</span><span>'+arr[i].newscore+'</span></li>').appendTo(".threebox");
+                }
+            }
+        })
+
+        //给three部分添加划过效果
+        $(".three").on("mouseover","li",function(){
+        	
+	        	$(this).stop().animate({top:-5},500);
+	       
+        })
+        $(".three").on("mouseout","li",function(){
+        	$(this).stop().animate({top:0,boxShadow:'0 10px 15px'},500);
+
+        })
+
+        $.ajax({
+            url:"js/data6.json",
+            type:"POST",
+            success:function(data){
+            	console.log(data);
+            	var arr =data["list0"];
+              //  var arr = data["list"+index];
+                for(var i = 0; i < arr.length; i++){
+                	// console.log(arr.length);
+                    $('<img src="'+arr[i].img+'">').appendTo("#one");
+                }
+            }
+        })
+        $.ajax({
+            url:"js/data6.json",
+            type:"POST",
+            success:function(data){
+            	console.log(data);
+            	var arr =data["list1"];
+              //  var arr = data["list"+index];
+                for(var i = 0; i < arr.length; i++){
+                	// console.log(arr.length);
+                    $('<div><img src="'+arr[i].img+'"><p>'+arr[i].title+'</p><span>'+arr[i].info+'</span><h6>'+arr[i].price+'</h6></div>').appendTo(".imgbox");
+
+                }
+            }
+        })
+
+
+
+
+
+
+	})
+
+
+
+
+</script>
+</head>
+<body>
+	<div class="title">
+		<a href="#" id="btn1">
+		    <span class="glyphicon glyphicon-remove-circle" ></span>
+		</a>
+	</div>
+	<div id = "nav" class="container">
+		<div class="row">
+			<div class = "col-lg-6">
+				<a href="#">魅族官网</a>
+				<a href="#">魅族商城</a>
+				<a href="home.html">Flyme</a>
+				<a href="#">专卖店</a>
+				<a href="#">服务</a>
+				<a href="#">社区</a>
+			</div>
+			<div class = "col-lg-4 col-lg-push-2">
+				<a href="car.html">购物车<span>0</span></a>
+				<a href="#">我的订单</a>
+				<a href="register.html">登录</a>
+				<a href="login.html">注册</a>
+			</div>
+		</div>
+	</div>
+	<div id="select">
+		<img src="img/logo.jpg"/>
+		<ul id ="ful">
+			<li class="phone s0"><a href="list.html">全部分类</a></li>
+			<li class="phone s1"><a href="list.html">PRO手机</a></li>
+			<li class="phone s2"><a href="list.html">魅蓝手机</a></li>
+			<li class="phone s3"><a href="list.html">MX手机</a></li>
+			<li class="phone s4"><a href="list.html">数码配件</a></li>
+			<li class="phone s5"><a href="list.html">智能设备</a></li>
+		</ul>
+		<div id="drop">
+			<ul class="phone1"></ul>
+		</div>
+	</div>
+	<!-- banner -->
+	<div id="carousel" class="carousel slide carousel-fade" data-ride="carousel"  data-interval="2000">
+		<div id="label">
+			<a href="#">手机</a><div class="unfold"><ul class="list"></ul></div>
+			<a href="#">智能设备</a><div class="unfold"><ul class="list"></ul></div>
+			<a href="#">智能穿戴</a><div class="unfold"><ul class="list"></ul></div>
+			<a href="#">游戏设备</a><div class="unfold"><ul class="list"></ul></div>
+			<a href="#">数码影音</a><div class="unfold"><ul class="list"></ul></div>
+			<a href="#">手机配件/移动电源</a><div class="unfold"><ul class="list"></ul></div>
+			<a href="#">移动存储/办公设备</a><div class="unfold"><ul class="list"></ul></div>
+			<a href="#">生活周边</a><div class="unfold"><ul class="list"></ul></div>
+		</div>
+    <!-- 轮播（Carousel）指标 -->
+	    <ol class="carousel-indicators">
+	        <li data-target="#carousel" data-slide-to="0" class="active"></li>
+	        <li data-target="#carousel" data-slide-to="1"></li>
+	        <li data-target="#carousel" data-slide-to="2"></li>
+	        <li data-target="#carousel" data-slide-to="3"></li>
+	        <li data-target="#carousel" data-slide-to="4"></li>
+	       
+	    </ol>   
+    <!-- 轮播（Carousel）项目 -->
+	    <div class="carousel-inner" >
+		   
+	        <div class="item active">
+	            <img src="img/banner_1.jpg" style="max-width:150%">
+	        </div>
+	        <div class="item">
+	            <img src="img/banner_2.jpg" style="max-width:150%">
+	        </div>
+	        <div class="item">
+	            <img src="img/banner_3.png" style="max-width:150%">
+	        </div>
+	        <div class="item">
+	            <img src="img/banner_4.jpg" style="max-width:150%">
+	        </div>
+	        <div class="item">
+	            <img src="img/banner_5.jpg" style="max-width:150%">
+	        </div>
+		    </div>
+		    
+		</div>
+	</div>
+	<div id ="one">
+		<img class="l" src = "img/l.png"></div>
+	<div id ="two">
+		<h2>热品推荐</h2>
+		<div id="box">
+			<button class="leftbtn"><</button>
+			<button class="rightbtn">></button>
+		</div>
+		<div class="imgbox"></div>
+	</div>
+	<div class = "three three1">
+		<span>手机</span>
+		<a class="th1">热销机型</a>
+		<a class="th2">更多></a>
+		<ul class ="threebox threbox1"></ul>
+		<div></div>
+	</div>
+	<div class = "three three2">
+		<span>手机</span>
+		<a class="th1">热销机型</a>
+		<a class="th2">更多></a>
+		<ul class ="threebox threebox2"></ul>
+		<div></div>
+	</div>
+	<div class = "three three3">
+		<span>手机</span>
+		<a class="th1">热销机型</a>
+		<a class="th2">更多></a>
+		<ul class ="threebox threebox3"></ul>
+		<div></div>
+	</div>
+	<div id="foot" >
+		<div class="div1">
+			<ul>
+				<li><span>7天无理由退货</span></li>
+				<li><span>7天无理由退货</span></li>
+				<li><span>7天无理由退货</span></li>
+				<li><span>7天无理由退货</span></li>
+				<li><span>7天无理由退货</span></li>
+				<li><span>7天无理由退货</span></li>
+			</ul>
+		</div>
+		<div class="libox">
+			<ul>
+				<li>帮助说明</li>
+				<li>支付方式</li>
+				<li>配送说明</li>
+				<li>售后服务</li>
+				<li>付款帮助</li>
+			</ul>
+			<ul>
+				<li>帮助说明</li>
+				<li>支付方式</li>
+				<li>配送说明</li>
+				<li>售后服务</li>
+				<li>付款帮助</li>
+			</ul>
+			<ul>
+				<li>帮助说明</li>
+				<li>支付方式</li>
+				<li>配送说明</li>
+				<li>售后服务</li>
+				<li>付款帮助</li>
+			</ul>
+			<ul>
+				<li>帮助说明</li>
+				<li>支付方式</li>
+				<li>配送说明</li>
+				<li>售后服务</li>
+				<li>付款帮助</li>
+			</ul>
+			<ul>
+				<li>24小时全国服务热线</li>
+				<li><h3>400-788-3333</h3></li>
+				<li><button type="button" class="btn btn-primary">24小时在线客服</button></li>
+			</ul>
+		</div>
+		<div class="lp">
+			<p>珠海市魅族通讯设备有限公司 ©2017 Meizu Telecom Equipment Co., Ltd. All rights reserved. 备案号：粤ICP备13003602号-2 经营许可证编号：粤B2-20130198 营业执照</p>
+		</div>
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>购物车</title>
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="css/common.css">
+<link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="css/css.css">
+<link rel="stylesheet" type="text/css" href="css/jquery-ui.structure.css">
+<link rel="stylesheet" type="text/css" href="css/tool.css">
+<style>
+body{
+	overflow-x:hidden; 
+}
+a:hover{
+	text-decoration: none;
+}
+#foot{
+	/*margin-top:0;*/
+}
+#mid{
+	height:360px;
+	display: none;
+}
+#bg{
+	width:100px;
+	height:114px;
+	background: url(img/car.png);
+	position:absolute;
+	left:35%;
+	top:30%;
+}
+#mid button{
+	width:126px;
+	height:36px;
+	border-radius: 3px;
+	color:#00c3f5;
+	border:1px solid #00c3f5;
+	background: white;
+	position:absolute;
+	left:45%;
+	top:38%;
+}
+#mid button a{
+	color:#00c3f5;
+}
+#mid p{
+	font-size:20px;
+	font-family: "微软雅黑";
+	position:absolute;
+	left:45%;
+	top:33%;
+}
+#have{
+	text-align: center;
+	margin-top:20px;
+}
+.order1{
+	
+	width:1240px;
+	margin-left:1%;
+	/*margin-top:50px;*/
+	overflow: hidden;
+}
+.order div{
+	float:left;
+	padding-top:50px;
+
+}
+.order2{
+	height:150px;
+	width:1240px;
+	background: white;
+}
+#select{
+	width:261px;
+	height:150px;
+	
+}
+#select img{
+	width:100px;
+	height:100px;
+	margin:0;
+	position: relative;
+	left:124px;
+	top:-31px;
+}
+#select input,#account input{
+	width:23px;
+	height:21px;
+	background: #00c3f5;
+	color: #fff;
+	border-color: #00c3f5;
+	position: relative;
+	left:-127px;
+	top:10px;
+}
+#account input{
+	left:-46px;
+	top:5px;
+}
+#name{
+	width:260px;
+	height:150px;
+	margin-left:261px;
+	text-align: left;
+}
+#name span{
+	color:#999;
+}
+#price{
+	width:215px;
+	height:150px;
+	color:#666;
+	font-size:18px;
+	font-weight: 600;
+	margin-top:10px;
+}
+.number{
+	width:199px;
+	height:150px;
+
+}
+.number .spi{
+	position:relative;
+	top:-44px;
+	left:0px;
+	
+}
+.number button{
+	width:40px;
+	height:40px;
+	background: transparent;
+	border:1px solid rgb(239,239,239);
+}
+.number input{
+	width:58px;
+	height:40px;
+	border:1px solid rgb(239,239,239);
+	text-align: center;
+}
+.minus{
+	position: relative;
+	top:0px;
+	left:41px;
+}
+.plus{
+	position: relative;
+	top:0px;
+	left:97px;
+}
+#total{
+	width:158px;
+	height:150px;
+	font-size:18px;
+	font-weight: 600;
+	color:#e02b41;
+	margin-top:10px;
+}
+.ctrl{
+	width:147px;
+	height:150px;
+	margin-top:10px;
+}
+#account{
+	width:1240px;
+	height:70px;
+	text-align: left;
+	padding-top:30px;
+	line-height: 30px;
+	margin-top:10px;
+}
+#account button{
+	top:0px;
+	left:1122px;
+	width:100px;
+	height:36px;
+	background:#00c3f5;
+	border-color:#00c3f5;
+}
+.rsp{
+	margin-left:400px;
+}
+.pri,.sprice{
+	font-size: 18px;
+    font-weight: 600;
+    color: #e02b41;
+}
+#account a{
+	color:#999;
+}
+.num2{
+	font-size:18px;
+
+}
+.num3{
+	font-size:18px;
+	color:#00c3f5;
+}
+</style>
+<script type="text/javascript" src="js/jquery-1.11.1.js"></script>
+<script type="text/javascript"src="js/goods.js"></script>
+<script type="text/javascript" src="js/jquery.cookie.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
+<script type="text/javascript" src="js/jquery-ui.js"></script>
+<script type="text/javascript">
+$(function(){
+	// console.log($.cookie("goods") == "[]");
+	
+	// var spinner = $( "#spinner" ).spinner();
+	// alert($.cookie("goods.img"));
+	// $("#select img").attr("src",'$.cookie("goods.img")');
+	if($.cookie("goods")){
+		$("#mid").css("display","none");
+		$("#have").css("display","block");
+	}else if($.cookie("goods") == "[]" || $(".order").childNodes.length == null){
+		$("#mid").css("display","block");
+		$("#have").css("display","none");
+	}else{
+		$("#mid").css("display","block");
+		$("#have").css("display","none");
+	}
+
+
+	
+
+
+
+	$.ajax({
+		url: "js/data4.json",
+		type: "GET",
+		success: function(res){
+			var arr = eval($.cookie("goods")); 
+			if(!arr){
+				return;
+			}
+			// var html = "";
+			
+			for(var i=0;i<arr.length;i++){
+				// alert(arr[i].count);
+				var Total = arr[i].num * arr[i].score;
+				$('<div class="order2"><div id="select"><input type="checkbox" checked><img src="'+arr[i].img+'"></div><div id="name"><p>'+arr[i].title+'</p><span id="type">'+arr[i].type+'</span><span class="color">'+arr[i].color+'</span><span id="rom">'+arr[i].rom+'</span></div><div id="price"><span>￥<span class="score">'+arr[i].score+'</span></span></div><div class="number"><div class="spi"><button class="minus">-</button><input class="spinner" value='+arr[i].num+'><button class="plus">+</button></div></div><div id="total"><span>￥<span class="total">'+Total+'</span></span></div><div class="ctrl"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></div></div>').appendTo(".order");
+				
+				// alert(oNum);
+				// console.log($("#minus").click);
+				// bbconsole.log($(".order").childNode);
+
+			}
+				var oTal = document.getElementsByClassName("total");
+				console.log(oTal.length);
+				var sum = 0;
+				var arr = [];
+				// console.log(oTal1);
+				for(var j =0;j< oTal.length;j++){
+					arr.push(Number($(".total").eq(j).html()));
+					console.log(arr);
+					sum +=arr[j];
+					// alert(arr[0]);
+					$(".sprice").html(sum);
+					$(".num1").html(sum/1099);
+				}
+
+				// console.log($(".sprice").html(sum));
+			//加减按钮
+			// var oMinus = document.getElementById("minus");
+			// var oPlus = document.getElementById("plus");
+			// var oNum = _this.val();
+			$(".minus").click(function(){
+				var _this = $(this).parent().find("input");
+				var oNum = _this.val();
+				var thIs = $(this).parent().parent().parent().find(".score");
+				var oSco = thIs.html();
+				var oTot = $(this).parent().parent().parent().find(".total");
+				var oTotal = oTot.html();
+				
+				
+				// alert(oTot);
+				$(_this).attr("value",--oNum);
+				var html = oNum * oSco;
+				$(oTot).html(html);
+				if(oNum==0){
+					var index = $(this).parent().parent().parent().index();
+					// alert(index);
+					$(this).parent().parent().parent().parent().find(".order2").eq(index).remove();
+	
+				}	
+
+				var cookieStr = $.cookie("goods");
+				var arr = eval(cookieStr);
+				var isYes = false;
+				var oID = $(this).parent().parent().parent().find(".color").html();
+				for(var i in arr){
+					if(arr[i].id == oID){
+					
+						arr[i].num-- ;
+						// alert(count);
+						// alert(arr);
+						isYes = true;
+						
+						
+					}
+					if(arr[i].num == 0){
+						// alert(i);
+						arr.splice(i,1);
+					}
+				}
+				$.cookie("goods", JSON.stringify(arr), {expires: 7});	
+				if($.cookie("goods") == '[]'){
+					$("#mid").css("display","block");
+					$("#have").css("display","none");
+				}
+				var oTal = document.getElementsByClassName("total");
+				console.log(oTal.length);
+				var sum = 0;
+				var arr = [];
+				// console.log(oTal1);
+				for(var j =0;j< oTal.length;j++){
+					arr.push(Number($(".total").eq(j).html()));
+					console.log(arr);
+					sum +=arr[j];
+					// alert(arr[0]);
+					$(".sprice").html(sum);
+					$(".num1").html(sum/1099);
+				}
+					
+			})
+			$(".plus").click(function(){
+
+				var _this = $(this).parent().find("input");
+				var oNum = _this.val();
+				var thIs = $(this).parent().parent().parent().find(".score");
+				var oSco = thIs.html();
+				var oTot = $(this).parent().parent().parent().find(".total");
+				var oTotal = oTot.html();
+
+				// $(".total").html(oNum * ($(".score").html()));
+				$(_this).attr("value",++oNum);
+				var html = oNum * oSco;
+				$(oTot).html(html);
+
+				var cookieStr = $.cookie("goods");
+				var arr = eval(cookieStr);
+				var isYes = false;
+				var oID = $(this).parent().parent().parent().find(".color").html();
+				for(var i in arr){
+					if(arr[i].id == oID){
+					
+						arr[i].num++ ;
+						// alert(count);
+						// alert(arr);
+						isYes = true;
+						
+						
+					}
+					
+				}
+				$.cookie("goods", JSON.stringify(arr), {expires: 7});
+				var oTal = document.getElementsByClassName("total");
+				console.log(oTal.length);
+				var sum = 0;
+				var arr = [];
+				// console.log(oTal1);
+				for(var j =0;j< oTal.length;j++){
+					arr.push(Number($(".total").eq(j).html()));
+					console.log(arr);
+					sum +=arr[j];
+					// alert(arr[0]);
+					$(".sprice").html(sum);
+					$(".num1").html(sum/1099);
+				}
+
+			})
+			// alert($(".order").childNodes.length);
+			new remove();
+			
+		}
+	})
+
+
+
+	$("#mid button").click(function(){
+		location.href = "index.html";
+	})
+	
+})
+function remove(){
+	// console.log($(".ctrl").find("span"));
+	$(".ctrl").find("span").click(function(){	
+		var index = $(this).parent().parent().index();	
+		$(this).parent().parent().parent().find(".order2").eq(index).remove();
+		var cookieStr = $.cookie("goods");
+		var arr = eval(cookieStr);
+		arr.splice(index,1);
+		$.cookie("goods", JSON.stringify(arr), {expires: 7});
+		var oTal = document.getElementsByClassName("total");
+		console.log(oTal.length);
+		var sum = 0;
+		var arr = [];
+		// console.log(oTal1);
+		for(var j =0;j< oTal.length;j++){
+			arr.push(Number($(".total").eq(j).html()));
+			console.log(arr);
+			sum +=arr[j];
+			// alert(arr[0]);
+			$(".sprice").html(sum);
+			$(".num1").html(sum/1099);
+		}
+		
+	});
+
+}
+
+
+</script>
+</head>
+<body>
+	<div id = "nav" class="container">
+		<div class="row">
+			<div class = "col-lg-6">
+				<a href="#">魅族官网</a>
+				<a href="index.html">魅族商城</a>
+				<a href="home.html">Flyme</a>
+				<a href="#">专卖店</a>
+				<a href="#">服务</a>
+				<a href="#">社区</a>
+			</div>
+			<div class = "col-lg-4 col-lg-push-3">
+				
+				<a href="#">我的订单</a>
+				<a href="register.html">登录</a>
+				<a href="login.html">注册</a>
+			</div>
+		</div>
+	</div>
+	<div id="mid">		
+		<div id="bg"></div>
+		<p>购物车内还没有商品，赶紧去选购吧~</p>
+		<button><a href="index.html">返回商城首页</a></button>
+	</div>
+
+	<div id="have">
+		<div class="tit">
+			<img src="img/title.png">		
+		</div>
+		<div class="order order1">	
+				
+		</div>
+		<div id = "account">
+			<input type = "checkbox" checked>
+			<span style="margin-left:-30px">全选</span>
+			<a href="#" style="margin-right:30px">删除选中的商品</a>
+			<spanstyle="margin-right:30px">共<span class="num1 num2"> 1 </span>件商品，已选择<span class="num1 num3"> 1 </span>件</span>
+			<span class="rsp">已优惠<span class="pri">0.00</span>元，合计(不含运费):<span>￥<span class="sprice" class="pri">0</span></span></span>
+			<button type="button" class="btn btn-primary">去结算</button>
+		</div>
+	</div>
+
+
+
+
+
+
+
+
+
+<div id="foot" >
+	<div class="div1">
+		<ul>
+			<li><span>7天无理由退货</span></li>
+			<li><span>7天无理由退货</span></li>
+			<li><span>7天无理由退货</span></li>
+			<li><span>7天无理由退货</span></li>
+			<li><span>7天无理由退货</span></li>
+			<li><span>7天无理由退货</span></li>
+		</ul>
+	</div>
+	<div class="libox">
+		<ul>
+			<li>帮助说明</li>
+			<li>支付方式</li>
+			<li>配送说明</li>
+			<li>售后服务</li>
+			<li>付款帮助</li>
+		</ul>
+		<ul>
+			<li>帮助说明</li>
+			<li>支付方式</li>
+			<li>配送说明</li>
+			<li>售后服务</li>
+			<li>付款帮助</li>
+		</ul>
+		<ul>
+			<li>帮助说明</li>
+			<li>支付方式</li>
+			<li>配送说明</li>
+			<li>售后服务</li>
+			<li>付款帮助</li>
+		</ul>
+		<ul>
+			<li>帮助说明</li>
+			<li>支付方式</li>
+			<li>配送说明</li>
+			<li>售后服务</li>
+			<li>付款帮助</li>
+		</ul>
+		<ul>
+			<li>24小时全国服务热线</li>
+			<li><h3>400-788-3333</h3></li>
+			<li><button type="button" class="btn btn-primary">24小时在线客服</button></li>
+		</ul>
+	</div>
+	<div class="lp">
+		<p>珠海市魅族通讯设备有限公司 ©2017 Meizu Telecom Equipment Co., Ltd. All rights reserved. 备案号：粤ICP备13003602号-2 经营许可证编号：粤B2-20130198 营业执照</p>
+	</div>
+</div>
+</body>
+</html>

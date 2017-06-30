@@ -1,0 +1,16 @@
+{"list1":[{"img":"img/gold1.jpg","img1":"img/gold_sm1.jpg"},{
+"img":"img/gold2.jpg","img1":"img/gold_sm2.jpg"},{
+"img":"img/gold3.jpg","img1":"img/gold_sm3.jpg"},{
+"img":"img/gold4.jpg","img1":"img/gold_sm4.jpg"}],
+"list2":[{"img":"img/silver1.jpg","img1":"img/silver_sm1.jpg"},{
+"img":"img/silver2.jpg","img1":"img/silver_sm2.jpg"},{
+"img":"img/silver3.jpg","img1":"img/silver_sm3.jpg"}],
+"list3":[{"img":"img/gray1.jpg","img1":"img/gray_sm1.jpg"},{
+"img":"img/gray2.jpg","img1":"img/gray_sm2.jpg"},{
+"img":"img/gray3.jpg","img1":"img/gray_sm3.jpg"},{
+"img":"img/gray4.jpg","img1":"img/gray_sm4.jpg"}],
+"list4":[{"img":"img/blue1.jpg","img1":"img/blue_sm1.jpg"},{
+"img":"img/blue2.jpg","img1":"img/blue_sm2.jpg"},{
+"img":"img/blue3.jpg","img1":"img/blue_sm3.jpg"},{
+"img":"img/blue4.jpg","img1":"img/blue_sm4.jpg"}
+]}

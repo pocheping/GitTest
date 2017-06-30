@@ -1,0 +1,7 @@
+.carousel-fade .carousel-inner .item{ opacity:0; transition-property:opacity;}
+.carousel-fade .carousel-inner .active{ opacity: 1;}
+.carousel-fade .carousel-inner .active.left,.carousel-fade .carousel-inner .active.right{position:absolute;left: 0;opacity: 0;}
+.carousel-fade .carousel-inner .next.left,
+.carousel-fade .carousel-inner .prev.right {opacity: 1;}
+.carousel{position: relative; top:80px;overflow: hidden}
+.carousel-inner{height:500px;width:150%;left:-300px;}
